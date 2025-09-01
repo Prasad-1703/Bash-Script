@@ -1,0 +1,8 @@
+threshold=80
+usage=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
+
+if [ $usage -gt $threshold ]; then
+    echo "Warning: Disk usage is ${usage}% (above ${threshold}%)"
+else
+    echo "Disk usage is safe: ${usage}%"
+fi
