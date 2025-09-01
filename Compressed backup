@@ -1,0 +1,12 @@
+#!/bin/bash
+src_dir="/tmp"
+backup_dir="/mnt"
+
+mkdir -p "$backup_dir"
+
+timestamp=$(date +%F_%H-%M-%S)
+backup_file="$backup_dir/data_backup_$timestamp.tar.gz"
+
+tar -czf "$backup_file" "$src_dir"
+
+echo "Backup created: $backup_file"
