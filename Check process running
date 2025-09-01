@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Enter process name to check:"
+read pname
+
+if pgrep -x "$pname" > /dev/null
+then
+    echo "Process '$pname' is running."
+else
+    echo "Process '$pname' is NOT running."
+fi
