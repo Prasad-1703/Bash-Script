@@ -1,0 +1,28 @@
+#!/bin/bash
+
+print_tree() {
+    local dir="$1"
+    local indent="$2"
+
+    # Base case: if directory doesn't exist
+    if [ ! -d "$dir" ]; then
+        return
+    fi
+
+    shopt -s nullglob dotglob
+    for f in "$dir"/*; do
+        if [ -d "$f" ]; then
+            echo "${indent}📁 $(basename "$f")"
+            sleep 0.5
+            print_tree "$f" "  $indent"  # recursive call with more indentation
+        elif [ -f "$f" ]; then
+            echo "${indent}  📄 $(basename "$f")"
+            sleep 0.2
+        fi
+    done
+}
+
+echo "Enter directory path to visualize: "
+read dir
+echo "Directory structure of '$dir':"
+print_tree "$dir" ""
