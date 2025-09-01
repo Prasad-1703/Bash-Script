@@ -1,0 +1,15 @@
+#!/bin/bash
+src_dir="/test"
+dest_dir="/organized"
+
+mkdir -p "$dest_dir"
+
+for file in "$src_dir"/*
+do
+    [ -f "$file" ] || continue
+
+    ext="${file##*.}"
+    mkdir -p "$dest_dir/$ext"
+    mv "$file" "$dest_dir/$ext/"
+    echo "Moved $file → $dest_dir/$ext/"
+done
